@@ -30,6 +30,12 @@ class HomeScreen extends StatelessWidget {
             },
           child: Text('Product Screen'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              context.push('/user');
+            },
+          child: Text('User Screen'),
+          ),
       ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'screens/about_screen.dart';
 import 'screens/contact_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/product_screen.dart';
+import 'screens/users_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +28,10 @@ final _router = GoRouter(
        GoRoute(
         path: '/product',
         builder: (context, state) => ProductScreen(),
+      ),
+      GoRoute(
+        path: '/user',
+        builder: (context, state) => UserScreen(),
       ),
     ],
   );
