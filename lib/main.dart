@@ -1,9 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'screens/about_screen.dart';
-import 'screens/contact_screen.dart';
+import 'screens/chart_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/product_screen.dart';
+import 'screens/calendar_screen.dart';
 import 'screens/users_screen.dart';
 
 void main() {
@@ -15,23 +17,27 @@ final _router = GoRouter(
   routes: [
       GoRoute(
         path: '/home',
-        builder: (context, state) => HomeScreen(),
+        builder: (context, state) => const HomeScreen(),
       ),
        GoRoute(
         path: '/about',
-        builder: (context, state) => AboutScreen(),
-      ),
-       GoRoute(
-        path: '/contact',
-        builder: (context, state) => ContactScreen(),
+        builder: (context, state) => const AboutScreen(),
       ),
        GoRoute(
         path: '/product',
-        builder: (context, state) => ProductScreen(),
+        builder: (context, state) => const ProductScreen(),
       ),
       GoRoute(
         path: '/user',
-        builder: (context, state) => UserScreen(),
+        builder: (context, state) => const UserScreen(),
+      ),
+      GoRoute(
+        path: '/calendar',
+        builder: (context, state) => const CalendarScreen(),
+      ),
+      GoRoute(
+        path: '/chart',
+        builder: (context, state) => const ChartScreen(),
       ),
     ],
   );

@@ -53,16 +53,19 @@ deleteUser(int id) async {
   await isar.writeTxn(()async {
     bool result = await isar.users.delete(id);
     if(result) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context)
 
-      .showSnackBar(SnackBar(content: Text('Kullanıcı Kaldırıldı')));
+      .showSnackBar(const SnackBar(content: Text('Kullanıcı Kaldırıldı')));
       getUsers();
     }
-    else(result) {
+    else {
+      (result) {
       ScaffoldMessenger.of(context)
 
-      .showSnackBar(SnackBar(content: Text('Kullanıcı Kaldırılamadı')));
+      .showSnackBar(const SnackBar(content: Text('Kullanıcı Kaldırılamadı')));
     };
+    }
   });
 }
 
@@ -74,11 +77,12 @@ usersToWidget(){
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Text(e.name!),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Text(e.id.toString()),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
+        // ignore: prefer_interpolation_to_compose_strings
         Text('Yas: ' + e.age.toString()),
-        ElevatedButton(onPressed: () => deleteUser(e.id), child: Icon(Icons.delete)),
+        ElevatedButton(onPressed: () => deleteUser(e.id), child: const Icon(Icons.delete)),
       ],
     ),
    ))
@@ -114,13 +118,16 @@ closeConnection() async {
 
 @override
 void initState() {
+  // ignore: avoid_print
   print('Ekran Çalıştı');
   openConnection();
   super.initState();
 }
 
 @override
+// ignore: override_on_non_overriding_member
 void disponse() {
+  // ignore: avoid_print
   print('Ekran Kapandı');
   closeConnection();
   super.dispose();
@@ -130,23 +137,30 @@ void disponse() {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
+        backgroundColor: const Color.fromRGBO(192, 192, 192, 3),
         appBar: AppBar(
-          title: Text('Kullanıcılar'),
+          // ignore: prefer_const_constructors
+          title: Text('User Screen'),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () => addUser(
                 'Berkay İşkodra', 'X', 'Y', 19, 'İstanbul', '0534 343 34 34'),
-              child: Text('Ekle')),
+              child: const Text('Ekle')),
+            const SizedBox(height: 8),
             ElevatedButton(
               onPressed: getUsers, child: const Text('Kullanıcıları Listele')),
+            const SizedBox(height: 8),
             ElevatedButton(
               onPressed: getYoungUsers, child: const Text('20 Yaşından Küçükler')),
+            const SizedBox(height: 8),
             ElevatedButton(
               onPressed: getOldUsers, child: const Text('20 Yaşından Büyükler')),
+            const SizedBox(height: 8),
             ElevatedButton(
               onPressed: () {
                 editUser(
@@ -160,7 +174,6 @@ void disponse() {
             ),
           ],
         ),
-      ),
     );
   }
 }
